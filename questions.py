@@ -1,5 +1,6 @@
 import pandas as pd
 from random import randint
+
 class Questions:
     
     def __init__(self):
@@ -15,7 +16,7 @@ class Questions:
         return studentNum
     
     def askQuestion(self, df, question, studentNum, popularity = 1):
-        lis = [question, studentNum, 1]
+        lis = [question, studentNum, popularity]
         
         df_length = len(df)
         df.loc[df_length] = lis
