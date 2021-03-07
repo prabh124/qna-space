@@ -1,7 +1,12 @@
-from google.cloud import automl
+import os
 
-project_id = "qna-space"
-display_name = "Questions4"
+from google.cloud import automl
+from dotenv import load_dotenv
+
+load_dotenv()
+
+project_id = os.getenv("PROJECT_ID")
+display_name = os.getenv("DISPLAY_NAME")
 
 client = automl.AutoMlClient()
 

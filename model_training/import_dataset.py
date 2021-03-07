@@ -1,8 +1,13 @@
-from google.cloud import automl
+import os
 
-project_id = "qna-space"
-dataset_id = "TCN4819247975228243968"
-path = "gs://qna-space-lcm/Questions4.csv"
+from google.cloud import automl
+from dotenv import load_dotenv
+
+load_dotenv()
+
+project_id = os.getenv("PROJECT_ID")
+dataset_id = os.getenv("DATASET_ID")
+path = os.getenv("LOCAL_PATH")
 
 client = automl.AutoMlClient()
 
