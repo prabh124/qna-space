@@ -1,44 +1,20 @@
-#import pyodbc
-#import sqlalchemy
-#from sqlalchemy import create_engine
-'''
-USERNAME = 'sqlserver'
-PASSWORD = 'sfhacks2021'
-SERVER = 'localhost'
-DATABASE = 'master'
-DRIVER = 'SQL Server Native Client 11.0'
-'''
+from questions import Questions
 
+q = Questions()
+df = q.initDataframe()
 
-import pandas as pd
-from random import randint
+q.askQuestion(df, 'How can I take the derivative of x?', q.getStudentNum())
 
-def initDataframe():
-    df = pd.DataFrame(columns=['question', 'studentNum', 'popularity'])
-    return df
+q.askQuestion(df, 'How can I take the derivative of y?', q.getStudentNum())
 
-def getStudentNum():
-    studentNum = randint(200000000, 299999999)
-    
-    return studentNum
+q.askQuestion(df, 'How can I take the integral of y?', q.getStudentNum())
 
-def askQuestion(df, question, studentNum, popularity = 1):
-    lis = [question, studentNum, 1]
-    
-    df_length = len(df)
-    df.loc[df_length] = lis
-    
-    return None
+studentNums = df['studentNum'].tolist()
 
-df = initDataframe()
-
-askQuestion(df, 'How can I take the derivative of x?', getStudentNum())
-
-askQuestion(df, 'How can I take the derivative of y?', getStudentNum())
-
-askQuestion(df, 'How can I take the integral of y?', getStudentNum())
+q.upvoteQuestion(df, studentNums[0])
+q.upvoteQuestion(df, studentNums[0])
+q.upvoteQuestion(df, studentNums[0])
+q.upvoteQuestion(df, studentNums[1])
 
 print(df)
-
-#lis = df['Question'].tolist()
-#print(lis)
+    
