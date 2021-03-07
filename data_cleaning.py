@@ -22,5 +22,10 @@ tags = pd.read_csv('Tags.csv', encoding='latin1')
 df = pd.merge(questions, tags, on='Id')
 df = df.drop(['Id'], axis=1)
 
+df.columns = ['questions', 'tags']
+df = df.sample(frac=1).drop_duplicates(subset='questions').sort_index()
+df = df.iloc[:-43]
 
-df.to_csv('questions_tagged.csv', index=False)
+df = df.groupby('tags').filter(lambda tags: len(tags) > 50)
+
+#df.to_csv('questions_tagged_cleaned.csv', header=None, index=False)
